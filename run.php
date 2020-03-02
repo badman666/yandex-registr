@@ -42,8 +42,6 @@ foreach ($tokens as $login => $token) {
         $clearName = explode('.', $clearName)[0];
 
         if (ctype_lower($clearName)) {
-            //$sitesForCheck[] = $name;
-            //echo $name . PHP_EOL;
             write_log('log', $name);
         }
     }

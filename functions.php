@@ -24,7 +24,7 @@ function curl_get_req($url, $headers)
 function get_user_id($token)
 {
     $url = "https://api.webmaster.yandex.net/v3/user/";
-    $headers = array("Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8");
+    $headers = ["Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8"];
 
     $result = json_decode( curl_get_req($url, $headers) );
 
@@ -45,7 +45,7 @@ function get_user_id($token)
 function get_list_sites($user_id, $token)
 {
     $url = "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/";
-    $headers = array("Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8");
+    $headers = ["Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8"];
 
     $result = json_decode( curl_get_req($url, $headers) );
 
@@ -67,7 +67,7 @@ function get_list_sites($user_id, $token)
 function get_info_site($user_id, $host_id, $token)
 {
     $url = "https://api.webmaster.yandex.net/v3/user/{$user_id}/hosts/{$host_id}/";
-    $headers = array("Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8");
+    $headers = ["Authorization: OAuth {$token}", "Content-type: application/json;charset=UTF-8"];
 
     $result = json_decode( curl_get_req($url, $headers) );
 
@@ -79,8 +79,12 @@ function get_info_site($user_id, $host_id, $token)
     return $response;
 }
 
+/**
+ * @param $log_name
+ * @param $log_msg
+ */
 function write_log($log_name, $log_msg) {
     $f = fopen("./logs/{$log_name}.txt", "a+");
-    fwrite($f, "{$log_msg}\n");
+    fwrite($f, $log_msg . PHP_EOL);
     fclose($f);
 }
